@@ -1,0 +1,18 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.dark2932.thirst_was_tweaked.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "refmap": "thirst_was_tweaked.refmap.json",
+  "mixins": [
+    "MixinPlayerThirst"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "overwrites": {
+    "requireAnnotations": true
+  }
+}
