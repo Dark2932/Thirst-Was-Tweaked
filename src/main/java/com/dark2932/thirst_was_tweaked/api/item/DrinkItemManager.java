@@ -1,4 +1,4 @@
-package com.dark2932.thirst_was_tweaked.api;
+package com.dark2932.thirst_was_tweaked.api.item;
 
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.world.effect.MobEffectInstance;

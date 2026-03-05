@@ -5,7 +5,8 @@
   "compatibilityLevel": "JAVA_8",
   "refmap": "thirst_was_tweaked.refmap.json",
   "mixins": [
-    "MixinPlayerThirst"
+    "MixinPlayerThirst",
+    "MixinPlayerThirstRemap"
   ],
   "client": [
   ],

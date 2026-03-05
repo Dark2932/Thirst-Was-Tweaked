@@ -1,16 +1,19 @@
 package com.dark2932.thirst_was_tweaked.mixin;
 
-import com.dark2932.thirst_was_tweaked.api.DrinkItem;
-import com.dark2932.thirst_was_tweaked.api.DrinkItemManager;
+import com.dark2932.thirst_was_tweaked.api.item.DrinkItem;
+import com.dark2932.thirst_was_tweaked.api.item.DrinkItemManager;
 import dev.ghen.thirst.api.ThirstHelper;
 import dev.ghen.thirst.content.thirst.PlayerThirst;
 import dev.ghen.thirst.foundation.common.capability.ModCapabilities;
+import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 /**
@@ -38,6 +41,16 @@ public abstract class MixinPlayerThirst {
     private void mixin$tick(Player player, CallbackInfo ci) {
         if (getThirst() < 0) setThirst(0);
         if (getQuenched() < 0) setQuenched(0);
+    }
+
+}
+
+@Mixin(PlayerThirst.class)
+class MixinPlayerThirstRemap {
+
+    @Redirect(method = "tick", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/Level;isRainingAt(Lnet/minecraft/core/BlockPos;)Z"))
+    private boolean mixin$tick(Level level, BlockPos pos) {
+        return false;
     }
 
 }
