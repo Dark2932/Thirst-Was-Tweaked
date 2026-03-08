@@ -15,10 +15,10 @@ public class DrinkItemManager {
     private int thirst; //可恢复的口渴值
     private int quenched; //可恢复的水合度（饱水度）
     private int useDuration = 32; //使用时间，原版默认32tick
-    private ItemStack container; //喝完后返还的物品
+    private ItemStack container; //喝完后返还的物品，默认为null，即不返还
     private boolean foodAnim; //true播放吃东西的动画，默认为false，即播放喝东西的动画
     private boolean ifBurp; //true让玩家喝完后打嗝，默认false。但如果DrinkItem含有食物属性，则此项会被设置为true
-    private List<Pair<MobEffectInstance, Float>> effects; //喝完后给予玩家的药水效果
+    private List<Pair<MobEffectInstance, Float>> effects; //喝完后给予玩家的药水效果，默认没有
 
     public int getThirst() {
         return thirst;

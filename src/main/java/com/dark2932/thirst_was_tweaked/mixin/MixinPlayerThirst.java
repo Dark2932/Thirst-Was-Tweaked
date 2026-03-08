@@ -19,7 +19,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 /**
  * @author Dark2932
  */
-@Mixin(value = PlayerThirst.class, remap = false)
+@Mixin(value = PlayerThirst.class)
 public abstract class MixinPlayerThirst {
 
     @Shadow public abstract int getThirst();
@@ -27,7 +27,7 @@ public abstract class MixinPlayerThirst {
     @Shadow public abstract void setThirst(int value);
     @Shadow public abstract void setQuenched(int value);
 
-    @Inject(method = "drink(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/entity/player/Player;)V", at = @At(value = "TAIL"))
+    @Inject(method = "drink(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/entity/player/Player;)V", at = @At(value = "TAIL"), remap = false)
     private static void mixin$drink(ItemStack stack, Player player, CallbackInfo ci) {
         if (!ThirstHelper.itemRestoresThirst(stack) && stack.getItem() instanceof DrinkItem item) {
             DrinkItemManager manager = item.manager;
@@ -37,19 +37,14 @@ public abstract class MixinPlayerThirst {
         }
     }
 
-    @Inject(method = "tick", at = @At(value = "HEAD"))
-    private void mixin$tick(Player player, CallbackInfo ci) {
+    @Inject(method = "tick", at = @At(value = "HEAD"), remap = false)
+    private void mixin$tick1(Player player, CallbackInfo ci) {
         if (getThirst() < 0) setThirst(0);
         if (getQuenched() < 0) setQuenched(0);
     }
 
-}
-
-@Mixin(PlayerThirst.class)
-class MixinPlayerThirstRemap {
-
     @Redirect(method = "tick", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/Level;isRainingAt(Lnet/minecraft/core/BlockPos;)Z"))
-    private boolean mixin$tick(Level level, BlockPos pos) {
+    private boolean mixin$tick2(Level level, BlockPos pos) {
         return false;
     }
 
