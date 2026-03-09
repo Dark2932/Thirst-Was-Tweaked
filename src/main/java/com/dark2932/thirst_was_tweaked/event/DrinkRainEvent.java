@@ -1,7 +1,7 @@
 package com.dark2932.thirst_was_tweaked.event;
 
 import com.dark2932.thirst_was_tweaked.ThirstWasTweaked;
-import com.dark2932.thirst_was_tweaked.network.TWTNetworkHandler;
+import com.dark2932.thirst_was_tweaked.network.ThirstTweakNetworkHandler;
 import com.dark2932.thirst_was_tweaked.network.msg.RightClickEmptyPacket;
 import dev.ghen.thirst.foundation.common.capability.ModCapabilities;
 import dev.ghen.thirst.foundation.config.CommonConfig;
@@ -31,7 +31,7 @@ public class DrinkRainEvent {
             DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
 
                 //向服务端发送数据，加水量
-                TWTNetworkHandler.sendToServer(new RightClickEmptyPacket(player.getUUID()));
+                ThirstTweakNetworkHandler.sendToServer(new RightClickEmptyPacket(player.getUUID()));
 
                 // ↓仅为当前玩家播放挥臂动画和播放喝水音效↓
                 if (level.isRainingAt(pos) && level.canSeeSky(pos) &&

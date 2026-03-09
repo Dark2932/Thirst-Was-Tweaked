@@ -11,7 +11,7 @@ import net.minecraftforge.network.simple.SimpleChannel;
 /**
  * @author Dark2932
  */
-public class TWTNetworkHandler {
+public class ThirstTweakNetworkHandler {
 
     private static int ID = 0;
     private static final String VERSION = "1.0";
