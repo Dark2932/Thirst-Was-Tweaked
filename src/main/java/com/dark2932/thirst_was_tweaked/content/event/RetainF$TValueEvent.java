@@ -1,7 +1,7 @@
-package com.dark2932.thirst_was_tweaked.event;
+package com.dark2932.thirst_was_tweaked.content.event;
 
 import com.dark2932.thirst_was_tweaked.ThirstWasTweaked;
-import com.dark2932.thirst_was_tweaked.config.ThirstTweakConfig;
+import com.dark2932.thirst_was_tweaked.content.config.ThirstTweakConfig;
 import dev.ghen.thirst.foundation.common.capability.ModCapabilities;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.food.FoodData;

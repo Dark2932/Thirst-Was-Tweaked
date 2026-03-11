@@ -1,4 +1,4 @@
-package com.dark2932.thirst_was_tweaked.api.item;
+package com.dark2932.thirst_was_tweaked.content.item;
 
 import com.mojang.datafixers.util.Pair;
 import dev.ghen.thirst.content.thirst.PlayerThirst;

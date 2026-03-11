@@ -1,4 +1,4 @@
-package com.dark2932.thirst_was_tweaked.network.msg;
+package com.dark2932.thirst_was_tweaked.content.network.msg;
 
 import dev.ghen.thirst.content.purity.WaterPurity;
 import dev.ghen.thirst.foundation.common.capability.ModCapabilities;
@@ -45,9 +45,8 @@ public class RightClickEmptyPacket {
                     if (level.isRainingAt(pos) && level.canSeeSky(pos) &&
                         player.isCrouching() && player.getXRot() <= -75.0f) {
                         player.getCapability(ModCapabilities.PLAYER_THIRST).ifPresent(cap -> {
-                            if (cap.getThirst() < 20) {
+                            if (cap.getThirst() < 20 && WaterPurity.givePurityEffects(player, level.getRandom().nextInt(3))) {
                                 cap.drink(player, 1, 0);
-                                WaterPurity.givePurityEffects(player, level.getRandom().nextInt(3));
                                 player.swing(InteractionHand.MAIN_HAND);
                                 player.playSound(SoundEvents.GENERIC_DRINK);
                             }

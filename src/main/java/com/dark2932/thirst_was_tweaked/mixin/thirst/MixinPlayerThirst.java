@@ -1,7 +1,7 @@
-package com.dark2932.thirst_was_tweaked.mixin;
+package com.dark2932.thirst_was_tweaked.mixin.thirst;
 
-import com.dark2932.thirst_was_tweaked.api.item.DrinkItem;
-import com.dark2932.thirst_was_tweaked.api.item.DrinkItemManager;
+import com.dark2932.thirst_was_tweaked.content.item.DrinkItem;
+import com.dark2932.thirst_was_tweaked.content.item.DrinkItemManager;
 import dev.ghen.thirst.api.ThirstHelper;
 import dev.ghen.thirst.content.thirst.PlayerThirst;
 import dev.ghen.thirst.foundation.common.capability.ModCapabilities;

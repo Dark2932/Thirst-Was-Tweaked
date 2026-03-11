@@ -1,4 +1,4 @@
-package com.dark2932.thirst_was_tweaked.api.impl;
+package com.dark2932.thirst_was_tweaked.impl;
 
 /**
  * @author Dark2932

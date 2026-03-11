@@ -1,7 +1,7 @@
-package com.dark2932.thirst_was_tweaked.network;
+package com.dark2932.thirst_was_tweaked.content.network;
 
 import com.dark2932.thirst_was_tweaked.ThirstWasTweaked;
-import com.dark2932.thirst_was_tweaked.network.msg.RightClickEmptyPacket;
+import com.dark2932.thirst_was_tweaked.content.network.msg.RightClickEmptyPacket;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.network.NetworkRegistry;
