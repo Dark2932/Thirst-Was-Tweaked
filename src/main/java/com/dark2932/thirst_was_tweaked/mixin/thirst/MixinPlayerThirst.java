@@ -57,7 +57,7 @@ public abstract class MixinPlayerThirst {
         player.getCapability(ModCapabilities.PLAYER_THIRST).ifPresent(cap -> {
             if (player.hasEffect(ThirstTweakEffects.HYDROTOXIN.get())) {
                 int amplifier = player.getEffect(ThirstTweakEffects.HYDROTOXIN.get()).getAmplifier();
-                cap.addExhaustion(player, 0.02f + (amplifier * 0.00025f));
+                cap.addExhaustion(player, 0.03f + (amplifier * 0.005f));
             }
         });
     }
