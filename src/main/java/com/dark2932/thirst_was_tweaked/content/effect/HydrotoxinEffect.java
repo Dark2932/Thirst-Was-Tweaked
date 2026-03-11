@@ -22,7 +22,6 @@ public class HydrotoxinEffect extends MobEffect {
     public void applyEffectTick(@NotNull LivingEntity entity, int amplifier) {
         if (entity instanceof ServerPlayer player) {
             player.getCapability(ModCapabilities.PLAYER_THIRST).ifPresent((cap) -> {
-                cap.addExhaustion(player, (0.2f + (amplifier * 0.1f)));
                 if (!player.hasEffect(MobEffects.CONFUSION) || (player.hasEffect(MobEffects.CONFUSION) && player.getEffect(MobEffects.CONFUSION).getDuration() < 10 * 20)) {
                     player.addEffect(new MobEffectInstance(MobEffects.CONFUSION, 10 * 20, 0, false, false, false));
                 }

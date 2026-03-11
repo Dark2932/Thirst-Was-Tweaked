@@ -2,6 +2,7 @@ package com.dark2932.thirst_was_tweaked.mixin.thirst;
 
 import com.dark2932.thirst_was_tweaked.content.item.DrinkItem;
 import com.dark2932.thirst_was_tweaked.content.item.DrinkItemManager;
+import com.dark2932.thirst_was_tweaked.content.registry.ThirstTweakEffects;
 import dev.ghen.thirst.api.ThirstHelper;
 import dev.ghen.thirst.content.thirst.PlayerThirst;
 import dev.ghen.thirst.foundation.common.capability.ModCapabilities;
@@ -46,6 +47,19 @@ public abstract class MixinPlayerThirst {
     @Redirect(method = "tick", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/Level;isRainingAt(Lnet/minecraft/core/BlockPos;)Z"), remap = true)
     private boolean mixin$tick2(Level level, BlockPos pos) {
         return false;
+    }
+
+    @Redirect(method = "tick", at = @At(value = "INVOKE", target = "Ldev/ghen/thirst/content/thirst/PlayerThirst;addExhaustion(Lnet/minecraft/world/entity/player/Player;F)V"))
+    private void mixin$tick3(PlayerThirst instance, Player player, float amount) {}
+
+    @Inject(method = "tick", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/player/Player;isPassenger()Z", shift = At.Shift.AFTER))
+    private void mixin$tick4(Player player, CallbackInfo ci) {
+        player.getCapability(ModCapabilities.PLAYER_THIRST).ifPresent(cap -> {
+            if (player.hasEffect(ThirstTweakEffects.HYDROTOXIN.get())) {
+                int amplifier = player.getEffect(ThirstTweakEffects.HYDROTOXIN.get()).getAmplifier();
+                cap.addExhaustion(player, 0.02f + (amplifier * 0.00025f));
+            }
+        });
     }
 
 }

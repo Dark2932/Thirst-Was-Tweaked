@@ -5,6 +5,7 @@
   "compatibilityLevel": "JAVA_8",
   "refmap": "thirst_was_tweaked.refmap.json",
   "mixins": [
+    "thirst.MixinCommonConfig",
     "thirst.MixinPlayerThirst",
     "thirst.MixinWaterPurity"
   ],
