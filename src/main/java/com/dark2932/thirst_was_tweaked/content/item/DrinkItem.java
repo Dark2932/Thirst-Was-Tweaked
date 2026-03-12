@@ -32,6 +32,10 @@ public class DrinkItem extends Item {
         this.manager = manager;
     }
 
+    public boolean hasManager() {
+        return manager != null;
+    }
+
     @Override
     public @NotNull ItemStack finishUsingItem(@NotNull ItemStack stack, @NotNull Level level, @NotNull LivingEntity entity) {
         Player player = (Player) entity;
@@ -47,17 +51,13 @@ public class DrinkItem extends Item {
         //事件发布
         level.gameEvent(player, GameEvent.ITEM_INTERACT_FINISH, player.getEyePosition());
 
-        //触发补水，如果是通过配置文件添加的饮品，则使用配置文件的配置，反之则使用通过DrinkItemManager创建的各种东西。
-        //具体实现在mixin/MixinPlayerThirst.java中
-        PlayerThirst.drink(stack, player);
-
         //创造模式不消耗，其他模式每使用完消耗1个
         if (!player.getAbilities().instabuild) {
             stack.shrink(1);
         }
 
         //喝（吃）完后返还空容器，创造模式下不返还
-        if ((manager != null && manager.getContainer() != null) && !player.getAbilities().instabuild) {
+        if ((hasManager() && manager.getContainer() != null) && !player.getAbilities().instabuild) {
             ItemStack container = manager.getContainer();
             if (!player.getInventory().add(container)) {
                 player.drop(container, false);
@@ -65,7 +65,7 @@ public class DrinkItem extends Item {
         }
 
         //给予玩家饮品的药水效果
-        if (!level.isClientSide && (manager != null && manager.getEffects() != null)) {
+        if (!level.isClientSide && (hasManager() && manager.getEffects() != null)) {
             for (Pair<MobEffectInstance, Float> pair : manager.getEffects()) {
                 if (pair.getFirst() != null && level.random.nextFloat() < pair.getSecond()) {
                     player.addEffect(pair.getFirst());
@@ -74,7 +74,14 @@ public class DrinkItem extends Item {
         }
 
         //如果是食物，执行以下逻辑
-        if (stack.isEdible() && manager != null) {
+        if (stack.isEdible() && hasManager()) {
+
+            //触发补水，如果是通过配置文件添加的饮品，则使用配置文件的配置，反之则使用通过DrinkItemManager创建的各种数据。
+            //在mixin/MixinThirstHelper.java中，我对相关方法进行了调整和重写，使DrinkItem得以兼容PlayerThirst.drink方法，即自动通过PlayerThirstManager.java中的事件给玩家补水。
+            //但由于DrinkItem有可能具有食物属性，而事件中过滤掉了带有食物属性的物品（即使用该物品后不补水），因此需要在此处手动触发一次补水。
+            //为什么不把这句写到外层？因为通过DrinkItem注册的纯饮品不包含食物属性（即不会被事件过滤掉），如果写到外层，就会导致纯饮品物品触发两次补水。
+            PlayerThirst.drink(stack, player);
+
             manager.burp(); //检测到物品有食物属性时必打嗝
             player.getFoodData().eat(stack.getItem(), stack, player);
             for (Pair<MobEffectInstance, Float> pair : stack.getFoodProperties(player).getEffects()) {
@@ -85,7 +92,7 @@ public class DrinkItem extends Item {
         }
 
         //令玩家喝（吃）完后打嗝
-        if (manager != null && manager.ifBurp()) {
+        if (hasManager() && manager.ifBurp()) {
             level.playSound(player, player.getX(), player.getY(), player.getZ(), SoundEvents.PLAYER_BURP, SoundSource.PLAYERS, 0.5F, level.random.nextFloat() * 0.1F + 0.9F);
         }
 
@@ -108,7 +115,7 @@ public class DrinkItem extends Item {
 
     @Override
     public @NotNull UseAnim getUseAnimation(@NotNull ItemStack stack) {
-        if (manager != null && manager.isFoodAnim()) {
+        if (hasManager() && manager.isFoodAnim()) {
             return UseAnim.EAT;
         } else {
             return UseAnim.DRINK;

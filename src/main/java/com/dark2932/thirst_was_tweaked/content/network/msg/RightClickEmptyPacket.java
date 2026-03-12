@@ -45,8 +45,10 @@ public class RightClickEmptyPacket {
                     if (level.isRainingAt(pos) && level.canSeeSky(pos) &&
                         player.isCrouching() && player.getXRot() <= -75.0f) {
                         player.getCapability(ModCapabilities.PLAYER_THIRST).ifPresent(cap -> {
-                            if (cap.getThirst() < 20 && WaterPurity.givePurityEffects(player, level.getRandom().nextInt(3))) {
-                                cap.drink(player, 1, 0);
+                            if (cap.getThirst() < 20) {
+                                if (WaterPurity.givePurityEffects(player, level.getRandom().nextInt(2))) {
+                                    cap.drink(player, 1, 0);
+                                }
                                 player.swing(InteractionHand.MAIN_HAND);
                                 player.playSound(SoundEvents.GENERIC_DRINK);
                             }

@@ -3,7 +3,7 @@ package com.dark2932.thirst_was_tweaked;
 import com.dark2932.thirst_was_tweaked.content.config.ThirstTweakConfig;
 import com.dark2932.thirst_was_tweaked.content.network.ThirstTweakNetworkHandler;
 import com.dark2932.thirst_was_tweaked.content.registry.ThirstTweakEffects;
-import com.dark2932.thirst_was_tweaked.content.registry.ThirstTweakPotions;
+import com.dark2932.thirst_was_tweaked.content.registry.ThirstTweakItems;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -22,7 +22,7 @@ public class ThirstWasTweaked {
         ThirstTweakConfig.init();
 
         ThirstTweakEffects.init(bus);
-        ThirstTweakPotions.init(bus);
+        ThirstTweakItems.init(bus);
     }
 
     private void onFMLCommonSetup(FMLCommonSetupEvent event) {

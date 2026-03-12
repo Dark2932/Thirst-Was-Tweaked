@@ -20,7 +20,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 /**
  * @author Dark2932
  */
-@Mixin(value = PlayerThirst.class, remap = false)
+@Mixin(value = PlayerThirst.class, remap = false, priority = 1001)
 public abstract class MixinPlayerThirst {
 
     @Shadow public abstract int getThirst();
@@ -28,15 +28,15 @@ public abstract class MixinPlayerThirst {
     @Shadow public abstract void setThirst(int value);
     @Shadow public abstract void setQuenched(int value);
 
-    @Inject(method = "drink(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/entity/player/Player;)V", at = @At(value = "TAIL"))
-    private static void mixin$drink(ItemStack stack, Player player, CallbackInfo ci) {
-        if (!ThirstHelper.itemRestoresThirst(stack) && stack.getItem() instanceof DrinkItem item) {
-            DrinkItemManager manager = item.manager;
-            player.getCapability(ModCapabilities.PLAYER_THIRST).ifPresent(cap -> {
-                cap.drink(player, manager.getThirst(), manager.getQuenched());
-            });
-        }
-    }
+//    @Inject(method = "drink(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/entity/player/Player;)V", at = @At(value = "HEAD"))
+//    private static void mixin$drink(ItemStack stack, Player player, CallbackInfo ci) {
+//        if (stack.getItem() instanceof DrinkItem item && item.hasManager()) {
+//            DrinkItemManager manager = item.manager;
+//            player.getCapability(ModCapabilities.PLAYER_THIRST).ifPresent(cap -> {
+//                cap.drink(player, manager.getThirst(), manager.getQuenched());
+//            });
+//        }
+//    }
 
     @Inject(method = "tick", at = @At(value = "HEAD"))
     private void mixin$tick1(Player player, CallbackInfo ci) {
