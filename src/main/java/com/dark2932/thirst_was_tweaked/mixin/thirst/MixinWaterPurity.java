@@ -15,7 +15,7 @@ import java.util.Random;
 /**
  * @author Dark2932
  */
-@Mixin(value = WaterPurity.class)
+@Mixin(WaterPurity.class)
 public class MixinWaterPurity {
 
     /**

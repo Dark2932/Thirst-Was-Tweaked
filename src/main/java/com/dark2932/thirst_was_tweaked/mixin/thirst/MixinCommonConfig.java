@@ -12,15 +12,113 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 @Mixin(value = CommonConfig.class, remap = false)
 public class MixinCommonConfig {
 
+    // DEPLETES_WHEN_NAUSEA
     @Redirect(method = "<clinit>", at = @At(value = "INVOKE", target = "Lnet/minecraftforge/common/ForgeConfigSpec$Builder;comment(Ljava/lang/String;)Lnet/minecraftforge/common/ForgeConfigSpec$Builder;", ordinal = 4))
     private static ForgeConfigSpec.Builder mixin$DEPLETES_WHEN_NAUSEA$comment(ForgeConfigSpec.Builder builder, String comment) {
-        return builder.comment("↓↓↓ This option is banned by [Thirst Was Tweaked] mod. It doesn't do anything. ↓↓↓");
+        return comment(builder);
     }
     @Redirect(method = "<clinit>", at = @At(value = "INVOKE", target = "Lnet/minecraftforge/common/ForgeConfigSpec$Builder;define(Ljava/lang/String;Z)Lnet/minecraftforge/common/ForgeConfigSpec$BooleanValue;", ordinal = 1))
     private static ForgeConfigSpec.BooleanValue mixin$DEPLETES_WHEN_NAUSEA$define(ForgeConfigSpec.Builder builder, String path, boolean defaultValue) {
-        return builder.define("null", false);
+        return builder.define(str(path), false);
     }
 
+    // WATER_BOTTLE_STACKSIZE
+    @Redirect(method = "<clinit>", at = @At(value = "INVOKE", target = "Lnet/minecraftforge/common/ForgeConfigSpec$Builder;comment(Ljava/lang/String;)Lnet/minecraftforge/common/ForgeConfigSpec$Builder;", ordinal = 8))
+    private static ForgeConfigSpec.Builder mixin$WATER_BOTTLE_STACKSIZE$comment(ForgeConfigSpec.Builder builder, String comment) {
+        return comment(builder);
+    }
+    //todo 调整最大堆叠数获取的mixin代码
+    @Redirect(method = "<clinit>", at = @At(value = "INVOKE", target = "Lnet/minecraftforge/common/ForgeConfigSpec$Builder;define(Ljava/lang/String;Ljava/lang/Object;)Lnet/minecraftforge/common/ForgeConfigSpec$ConfigValue;", ordinal = 1))
+    private static <T> ForgeConfigSpec.ConfigValue<?> mixin$WATER_BOTTLE_STACKSIZE$define(ForgeConfigSpec.Builder builder, String path, T defaultValue) {
+        return builder.define(str(path), 1);
+    }
 
+    // DIRTY_POISON_PERCENTAGE
+    @Redirect(method = "<clinit>", at = @At(value = "INVOKE", target = "Lnet/minecraftforge/common/ForgeConfigSpec$Builder;comment(Ljava/lang/String;)Lnet/minecraftforge/common/ForgeConfigSpec$Builder;", ordinal = 21))
+    private static ForgeConfigSpec.Builder mixin$DIRTY_POISON_PERCENTAGE$comment(ForgeConfigSpec.Builder builder, String comment) {
+        return comment(builder);
+    }
+    @Redirect(method = "<clinit>", at = @At(value = "INVOKE", target = "Lnet/minecraftforge/common/ForgeConfigSpec$Builder;define(Ljava/lang/String;Ljava/lang/Object;)Lnet/minecraftforge/common/ForgeConfigSpec$ConfigValue;", ordinal = 8))
+    private static <T> ForgeConfigSpec.ConfigValue<?> mixin$DIRTY_POISON_PERCENTAGE$define(ForgeConfigSpec.Builder builder, String path, T defaultValue) {
+        return builder.define(str(path), 0);
+    }
+
+    // DIRTY_NAUSEA_PERCENTAGE
+    @Redirect(method = "<clinit>", at = @At(value = "INVOKE", target = "Lnet/minecraftforge/common/ForgeConfigSpec$Builder;comment(Ljava/lang/String;)Lnet/minecraftforge/common/ForgeConfigSpec$Builder;", ordinal = 22))
+    private static ForgeConfigSpec.Builder mixin$DIRTY_NAUSEA_PERCENTAGE$comment(ForgeConfigSpec.Builder builder, String comment) {
+        return comment(builder);
+    }
+    @Redirect(method = "<clinit>", at = @At(value = "INVOKE", target = "Lnet/minecraftforge/common/ForgeConfigSpec$Builder;define(Ljava/lang/String;Ljava/lang/Object;)Lnet/minecraftforge/common/ForgeConfigSpec$ConfigValue;", ordinal = 9))
+    private static <T> ForgeConfigSpec.ConfigValue<?> mixin$DIRTY_NAUSEA_PERCENTAGE$define(ForgeConfigSpec.Builder builder, String path, T defaultValue) {
+        return builder.define(str(path), 0);
+    }
+
+    // SLIGHTLY_DIRTY_POISON_PERCENTAGE
+    @Redirect(method = "<clinit>", at = @At(value = "INVOKE", target = "Lnet/minecraftforge/common/ForgeConfigSpec$Builder;comment(Ljava/lang/String;)Lnet/minecraftforge/common/ForgeConfigSpec$Builder;", ordinal = 23))
+    private static ForgeConfigSpec.Builder mixin$SLIGHTLY_DIRTY_POISON_PERCENTAGE$comment(ForgeConfigSpec.Builder builder, String comment) {
+        return comment(builder);
+    }
+    @Redirect(method = "<clinit>", at = @At(value = "INVOKE", target = "Lnet/minecraftforge/common/ForgeConfigSpec$Builder;define(Ljava/lang/String;Ljava/lang/Object;)Lnet/minecraftforge/common/ForgeConfigSpec$ConfigValue;", ordinal = 10))
+    private static <T> ForgeConfigSpec.ConfigValue<?> mixin$SLIGHTLY_DIRTY_POISON_PERCENTAGE$define(ForgeConfigSpec.Builder builder, String path, T defaultValue) {
+        return builder.define(str(path), 0);
+    }
+
+    // SLIGHTLY_DIRTY_NAUSEA_PERCENTAGE
+    @Redirect(method = "<clinit>", at = @At(value = "INVOKE", target = "Lnet/minecraftforge/common/ForgeConfigSpec$Builder;comment(Ljava/lang/String;)Lnet/minecraftforge/common/ForgeConfigSpec$Builder;", ordinal = 24))
+    private static ForgeConfigSpec.Builder mixin$SLIGHTLY_DIRTY_NAUSEA_PERCENTAGE$comment(ForgeConfigSpec.Builder builder, String comment) {
+        return comment(builder);
+    }
+    @Redirect(method = "<clinit>", at = @At(value = "INVOKE", target = "Lnet/minecraftforge/common/ForgeConfigSpec$Builder;define(Ljava/lang/String;Ljava/lang/Object;)Lnet/minecraftforge/common/ForgeConfigSpec$ConfigValue;", ordinal = 11))
+    private static <T> ForgeConfigSpec.ConfigValue<?> mixin$SLIGHTLY_DIRTY_NAUSEA_PERCENTAGE$define(ForgeConfigSpec.Builder builder, String path, T defaultValue) {
+        return builder.define(str(path), 0);
+    }
+
+    // ACCEPTABLE_POISON_PERCENTAGE
+    @Redirect(method = "<clinit>", at = @At(value = "INVOKE", target = "Lnet/minecraftforge/common/ForgeConfigSpec$Builder;comment(Ljava/lang/String;)Lnet/minecraftforge/common/ForgeConfigSpec$Builder;", ordinal = 25))
+    private static ForgeConfigSpec.Builder mixin$ACCEPTABLE_POISON_PERCENTAGE$comment(ForgeConfigSpec.Builder builder, String comment) {
+        return comment(builder);
+    }
+    @Redirect(method = "<clinit>", at = @At(value = "INVOKE", target = "Lnet/minecraftforge/common/ForgeConfigSpec$Builder;define(Ljava/lang/String;Ljava/lang/Object;)Lnet/minecraftforge/common/ForgeConfigSpec$ConfigValue;", ordinal = 12))
+    private static <T> ForgeConfigSpec.ConfigValue<?> mixin$ACCEPTABLE_POISON_PERCENTAGE$define(ForgeConfigSpec.Builder builder, String path, T defaultValue) {
+        return builder.define(str(path), 0);
+    }
+
+    // ACCEPTABLE_NAUSEA_PERCENTAGE
+    @Redirect(method = "<clinit>", at = @At(value = "INVOKE", target = "Lnet/minecraftforge/common/ForgeConfigSpec$Builder;comment(Ljava/lang/String;)Lnet/minecraftforge/common/ForgeConfigSpec$Builder;", ordinal = 26))
+    private static ForgeConfigSpec.Builder mixin$ACCEPTABLE_NAUSEA_PERCENTAGE$comment(ForgeConfigSpec.Builder builder, String comment) {
+        return comment(builder);
+    }
+    @Redirect(method = "<clinit>", at = @At(value = "INVOKE", target = "Lnet/minecraftforge/common/ForgeConfigSpec$Builder;define(Ljava/lang/String;Ljava/lang/Object;)Lnet/minecraftforge/common/ForgeConfigSpec$ConfigValue;", ordinal = 13))
+    private static <T> ForgeConfigSpec.ConfigValue<?> mixin$ACCEPTABLE_NAUSEA_PERCENTAGE$define(ForgeConfigSpec.Builder builder, String path, T defaultValue) {
+        return builder.define(str(path), 0);
+    }
+
+    // PURIFIED_POISON_PERCENTAGE
+    @Redirect(method = "<clinit>", at = @At(value = "INVOKE", target = "Lnet/minecraftforge/common/ForgeConfigSpec$Builder;comment(Ljava/lang/String;)Lnet/minecraftforge/common/ForgeConfigSpec$Builder;", ordinal = 27))
+    private static ForgeConfigSpec.Builder mixin$PURIFIED_POISON_PERCENTAGE$comment(ForgeConfigSpec.Builder builder, String comment) {
+        return comment(builder);
+    }
+    @Redirect(method = "<clinit>", at = @At(value = "INVOKE", target = "Lnet/minecraftforge/common/ForgeConfigSpec$Builder;define(Ljava/lang/String;Ljava/lang/Object;)Lnet/minecraftforge/common/ForgeConfigSpec$ConfigValue;", ordinal = 14))
+    private static <T> ForgeConfigSpec.ConfigValue<?> mixin$PURIFIED_POISON_PERCENTAGE$define(ForgeConfigSpec.Builder builder, String path, T defaultValue) {
+        return builder.define(str(path), 0);
+    }
+
+    // PURIFIED_NAUSEA_PERCENTAGE
+    @Redirect(method = "<clinit>", at = @At(value = "INVOKE", target = "Lnet/minecraftforge/common/ForgeConfigSpec$Builder;comment(Ljava/lang/String;)Lnet/minecraftforge/common/ForgeConfigSpec$Builder;", ordinal = 28))
+    private static ForgeConfigSpec.Builder mixin$PURIFIED_NAUSEA_PERCENTAGE$comment(ForgeConfigSpec.Builder builder, String comment) {
+        return comment(builder);
+    }
+    @Redirect(method = "<clinit>", at = @At(value = "INVOKE", target = "Lnet/minecraftforge/common/ForgeConfigSpec$Builder;define(Ljava/lang/String;Ljava/lang/Object;)Lnet/minecraftforge/common/ForgeConfigSpec$ConfigValue;", ordinal = 15))
+    private static <T> ForgeConfigSpec.ConfigValue<?> mixin$PURIFIED_NAUSEA_PERCENTAGE$define(ForgeConfigSpec.Builder builder, String path, T defaultValue) {
+        return builder.define(str(path) , 0);
+    }
+
+    private static ForgeConfigSpec.Builder comment(ForgeConfigSpec.Builder builder) {
+        return builder.comment(" ↓↓↓↓↓↓ This option is banned by [Thirst Was Tweaked] mod, it won't do anything.");
+    }
+
+    private static String str(String path) {
+        return "Banned<" + path + ">";
+    }
 
 }

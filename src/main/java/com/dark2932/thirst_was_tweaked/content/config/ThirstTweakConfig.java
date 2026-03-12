@@ -23,17 +23,21 @@ public class ThirstTweakConfig {
         BUILDER.push("Thirst Was Tweaked");
 
         RETAIN_THIRST_VALUE = BUILDER
-                .comment("Whether the thirst values is retained on death. (Default: true)")
+                .comment("Whether the thirst values will retain on death. (Default: true)")
                 .define("retainThirstValue", true);
+
         RETAIN_FOOD_VALUE = BUILDER
-                .comment("Whether the food values is retained on death. (Default: true)")
+                .comment("Whether the food values will retain on death. (Default: true)")
                 .define("retainFoodValue", true);
+
         DIRTY_HYDROTOXIN_CHANCE = BUILDER
                 .comment("The chance of giving the player the 'Hydrotoxin' effect after drinking dirty water. The value should be between 0 and 100. (Default: 30)")
                 .define("dirtyHydrotoxinChance", 30);
+
         SLIGHTLY_DIRTY_HYDROTOXIN_CHANCE = BUILDER
                 .comment("The chance of giving the player the 'Hydrotoxin' effect after drinking slightly dirty water. The value should be between 0 and 100. (Default: 18)")
                 .define("slightlyDirtyHydrotoxinChance", 18);
+
         ACCEPTABLE_HYDROTOXIN_CHANCE = BUILDER
                 .comment("The chance of giving the player the 'Hydrotoxin' effect after drinking acceptable water. The value should be between 0 and 100. (Default: 5)")
                 .define("acceptableHydrotoxinChance", 5);
