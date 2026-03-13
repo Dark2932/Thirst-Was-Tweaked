@@ -8,7 +8,8 @@
     "thirst.MixinCommonConfig",
     "thirst.MixinPlayerThirst",
     "thirst.MixinThirstHelper",
-    "thirst.MixinWaterPurity"
+    "thirst.MixinWaterPurity",
+    "vanilla.MixinLivingEntity"
   ],
   "client": [
   ],

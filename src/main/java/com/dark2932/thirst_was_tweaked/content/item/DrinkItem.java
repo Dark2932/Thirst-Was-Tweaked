@@ -40,25 +40,9 @@ public class DrinkItem extends Item {
     public @NotNull ItemStack finishUsingItem(@NotNull ItemStack stack, @NotNull Level level, @NotNull LivingEntity entity) {
         Player player = (Player) entity;
 
-        //进度触发器
-        if (player instanceof ServerPlayer sPlayer) {
-            CriteriaTriggers.CONSUME_ITEM.trigger(sPlayer, stack);
-        }
-
-        //兼容玩家统计中的总物品使用次数
-        player.awardStat(Stats.ITEM_USED.get(this));
-
-        //事件发布
-        level.gameEvent(player, GameEvent.ITEM_INTERACT_FINISH, player.getEyePosition());
-
-        //创造模式不消耗，其他模式每使用完消耗1个
-        if (!player.getAbilities().instabuild) {
-            stack.shrink(1);
-        }
-
         //喝（吃）完后返还空容器，创造模式下不返还
         if ((hasManager() && manager.getContainer() != null) && !player.getAbilities().instabuild) {
-            ItemStack container = manager.getContainer();
+            ItemStack container = manager.getContainer().getDefaultInstance();
             if (!player.getInventory().add(container)) {
                 player.drop(container, false);
             }
@@ -73,25 +57,38 @@ public class DrinkItem extends Item {
             }
         }
 
-        //如果是食物，执行以下逻辑
-        if (stack.isEdible() && hasManager()) {
-
-            //触发补水，如果是通过配置文件添加的饮品，则使用配置文件的配置，反之则使用通过DrinkItemManager创建的各种数据。
-            //在mixin/MixinThirstHelper.java中，我对相关方法进行了调整和重写，使DrinkItem得以兼容PlayerThirst.drink方法，即自动通过PlayerThirstManager.java中的事件给玩家补水。
-            //但由于DrinkItem有可能具有食物属性，而事件中过滤掉了带有食物属性的物品（即使用该物品后不补水），因此需要在此处手动触发一次补水。
-            //为什么不把这句写到外层？因为通过DrinkItem注册的纯饮品不包含食物属性（即不会被事件过滤掉），如果写到外层，就会导致纯饮品物品触发两次补水。
-            PlayerThirst.drink(stack, player);
-
-            manager.burp(); //检测到物品有食物属性时必打嗝
-            player.getFoodData().eat(stack.getItem(), stack, player);
-            for (Pair<MobEffectInstance, Float> pair : stack.getFoodProperties(player).getEffects()) {
-                if (!level.isClientSide && pair.getFirst() != null && level.random.nextFloat() < pair.getSecond()) {
-                    player.addEffect(pair.getFirst());
-                }
-            }
+        if (stack.isEdible()) {
+            return player.eat(level, stack);
         }
 
-        //令玩家喝（吃）完后打嗝
+        //以下代码将仅在物品没有食物属性（即注册的物品为纯饮品）时触发，含食物属性物品的逻辑已通过上方的player$eat方法处理
+
+        /**
+         * 为什么这里不调用PlayerThirst$drink方法，却把它注释了？
+         * 很好，为的就是特别提醒看到这的你，防止你跟thirst模组提供的DrinkableItem的逻辑搞混淆。
+         * 在本项目中的mixin/MixinThirstHelper.java中，相关方法已经过调整和重写，DrinkItem已经兼容PlayerThirst$drink方法了。
+         * 所以原本thirst模组提供的事件已经自动检测DrinkItem，并调用了PlayerThirst$drink方法。
+         * 另外，thirst模组使用mixin修改了Player$eat方法，玩家吃东西后也会调用PlayerThirst$drink方法，因此食物也无需再做单独判定。
+         */
+        //PlayerThirst.drink(stack, player);
+
+        //创造模式不消耗，其他模式每使用完消耗1个
+        if (!player.getAbilities().instabuild) {
+            stack.shrink(1);
+        }
+
+        //事件发布
+        level.gameEvent(player, GameEvent.ITEM_INTERACT_FINISH, player.getEyePosition());
+
+        //兼容玩家统计中的总物品使用次数
+        player.awardStat(Stats.ITEM_USED.get(this));
+
+        //进度触发器
+        if (player instanceof ServerPlayer sPlayer) {
+            CriteriaTriggers.CONSUME_ITEM.trigger(sPlayer, stack);
+        }
+
+        //玩家喝完后打嗝
         if (hasManager() && manager.ifBurp()) {
             level.playSound(player, player.getX(), player.getY(), player.getZ(), SoundEvents.PLAYER_BURP, SoundSource.PLAYERS, 0.5F, level.random.nextFloat() * 0.1F + 0.9F);
         }

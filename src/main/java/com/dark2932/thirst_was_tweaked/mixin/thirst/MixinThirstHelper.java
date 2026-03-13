@@ -49,8 +49,9 @@ public class MixinThirstHelper {
         } else if (item instanceof DrinkItem drinkItem && drinkItem.hasManager()) {
             return drinkItem.manager.getThirst();
 
+        } else {
+            return 0;
         }
-            return 0; //default value
     }
 
     /**
@@ -69,8 +70,9 @@ public class MixinThirstHelper {
         } else if (item instanceof DrinkItem drinkItem && drinkItem.hasManager()) {
             return drinkItem.manager.getQuenched();
 
+        } else {
+            return 0;
         }
-            return 0; //default value
     }
 
 }

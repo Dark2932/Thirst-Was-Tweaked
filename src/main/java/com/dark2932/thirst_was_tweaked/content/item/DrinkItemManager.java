@@ -2,7 +2,7 @@ package com.dark2932.thirst_was_tweaked.content.item;
 
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Item;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +15,7 @@ public class DrinkItemManager {
     private int thirst; //可恢复的口渴值
     private int quenched; //可恢复的水合度（饱水度）
     private int useDuration = 32; //使用时间，原版默认32tick
-    private ItemStack container; //喝完后返还的物品，默认为null，即不返还
+    private Item container; //喝完后返还的物品，默认为null，即不返还
     private boolean foodAnim; //true播放吃东西的动画，默认为false，即播放喝东西的动画
     private boolean ifBurp; //true让玩家喝完后打嗝，默认false。但如果DrinkItem含有食物属性，则此项会被设置为true
     private List<Pair<MobEffectInstance, Float>> effects; //喝完后给予玩家的药水效果，默认没有
@@ -32,7 +32,7 @@ public class DrinkItemManager {
         return useDuration;
     }
 
-    public ItemStack getContainer() {
+    public Item getContainer() {
         return container;
     }
 
@@ -63,7 +63,7 @@ public class DrinkItemManager {
         return this;
     }
 
-    public DrinkItemManager container(ItemStack container) {
+    public DrinkItemManager container(Item container) {
         this.container = container;
         return this;
     }

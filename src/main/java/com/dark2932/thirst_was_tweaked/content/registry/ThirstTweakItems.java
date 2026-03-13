@@ -24,7 +24,8 @@ public class ThirstTweakItems {
             new DrinkItemManager()
                     .thirst(4)
                     .quenched(2)
-                    .container(Items.PAPER.getDefaultInstance())
+                    .container(Items.PAPER)
+                    .burp()
     ));
 
     public static final RegistryObject<Item> TEST_DRINK_1 = ITEMS.register("test_drink_1", () -> new DrinkItem(
@@ -38,7 +39,7 @@ public class ThirstTweakItems {
             new DrinkItemManager()
                     .thirst(4)
                     .quenched(2)
-                    .container(Items.PAPER.getDefaultInstance())
+                    .container(Items.PAPER)
     ));
 
     public static void init(IEventBus bus) {
