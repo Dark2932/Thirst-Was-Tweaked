@@ -25,7 +25,6 @@ public class ThirstTweakItems {
                     .thirst(4)
                     .quenched(2)
                     .container(Items.PAPER)
-                    .burp()
     ));
 
     public static final RegistryObject<Item> TEST_DRINK_1 = ITEMS.register("test_drink_1", () -> new DrinkItem(

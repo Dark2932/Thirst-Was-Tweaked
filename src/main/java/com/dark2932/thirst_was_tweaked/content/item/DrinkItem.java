@@ -2,7 +2,10 @@ package com.dark2932.thirst_was_tweaked.content.item;
 
 import com.mojang.datafixers.util.Pair;
 import dev.ghen.thirst.content.thirst.PlayerThirst;
+import dev.ghen.thirst.foundation.config.ItemSettingsConfig;
 import net.minecraft.advancements.CriteriaTriggers;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -18,7 +21,11 @@ import net.minecraft.world.item.ItemUtils;
 import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.gameevent.GameEvent;
+import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.List;
+import java.util.Objects;
 
 /**
  * @author Dark2932
