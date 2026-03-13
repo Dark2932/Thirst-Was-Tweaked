@@ -12,6 +12,8 @@
     "vanilla.MixinLivingEntity"
   ],
   "client": [
+    "thirst.MixinHUDOverlayHandler",
+    "thirst.accessor.HUDOverlayHandlerAccessor"
   ],
   "injectors": {
     "defaultRequire": 1

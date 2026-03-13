@@ -36,7 +36,7 @@ public class MixinThirstHelper {
         String id = Objects.requireNonNull(ForgeRegistries.ITEMS.getKey(item)).toString();
         return (
             !(ItemSettingsConfig.ITEMS_BLACKLIST.get()).contains(id) &&
-            (VALID_DRINKS.containsKey(item) || (item instanceof DrinkItem drinkItem && drinkItem.hasManager()))
+            (VALID_DRINKS.containsKey(item) || (item instanceof DrinkItem drinkItem && drinkItem.hasManager() && !drinkItem.isEdible()))
         );
     }
 
