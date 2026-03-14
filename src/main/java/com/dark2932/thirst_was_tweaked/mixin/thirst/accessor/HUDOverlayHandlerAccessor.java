@@ -7,7 +7,7 @@ import org.spongepowered.asm.mixin.gen.Accessor;
 /**
  * @author Dark2932
  */
-@Mixin(HUDOverlayHandler.class)
+@Mixin(value = HUDOverlayHandler.class, remap = false)
 public interface HUDOverlayHandlerAccessor {
 
     @Accessor("flashAlpha")

@@ -1,5 +1,6 @@
 package com.dark2932.thirst_was_tweaked.content.network.msg;
 
+import com.dark2932.thirst_was_tweaked.content.config.ThirstTweakConfig;
 import dev.ghen.thirst.content.purity.WaterPurity;
 import dev.ghen.thirst.foundation.common.capability.ModCapabilities;
 import net.minecraft.core.BlockPos;
@@ -47,7 +48,7 @@ public class RightClickEmptyPacket {
                         player.getCapability(ModCapabilities.PLAYER_THIRST).ifPresent(cap -> {
                             if (cap.getThirst() < 20) {
                                 if (WaterPurity.givePurityEffects(player, level.getRandom().nextInt(2))) {
-                                    cap.drink(player, 1, 0);
+                                    cap.drink(player, ThirstTweakConfig.DRINK_RAIN_HYDRATION.get(), ThirstTweakConfig.DRINK_RAIN_QUENCHED.get());
                                 }
                                 player.swing(InteractionHand.MAIN_HAND);
                                 player.playSound(SoundEvents.GENERIC_DRINK);

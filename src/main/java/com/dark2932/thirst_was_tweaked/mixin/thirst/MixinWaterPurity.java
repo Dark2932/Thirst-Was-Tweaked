@@ -35,14 +35,14 @@ public class MixinWaterPurity {
 
         //根据摄入水源的纯净度获取配置文件中对应的中水毒的概率
         float chance = switch (purity) {
-            case 0 -> ThirstTweakConfig.DIRTY_HYDROTOXIN_CHANCE.get();
-            case 1 -> ThirstTweakConfig.SLIGHTLY_DIRTY_HYDROTOXIN_CHANCE.get();
-            case 2 -> ThirstTweakConfig.ACCEPTABLE_HYDROTOXIN_CHANCE.get();
+            case 0 -> ThirstTweakConfig.DIRTY_HYDRATOXIN_CHANCE.get();
+            case 1 -> ThirstTweakConfig.SLIGHTLY_DIRTY_HYDRATOXIN_CHANCE.get();
+            case 2 -> ThirstTweakConfig.ACCEPTABLE_HYDRATOXIN_CHANCE.get();
             default -> 0;
         };
 
         if (entity instanceof ServerPlayer player && (new Random().nextFloat()) < (chance / 100.0F)) {
-            player.addEffect(new MobEffectInstance(ThirstTweakEffects.HYDROTOXIN.get(), 60 * 20, 0, false, true, true));
+            player.addEffect(new MobEffectInstance(ThirstTweakEffects.HYDRATOXIN.get(), 60 * 20, 0, false, true, true));
             shouldDrink = false;
         }
 

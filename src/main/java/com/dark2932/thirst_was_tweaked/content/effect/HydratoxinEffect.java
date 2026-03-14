@@ -12,9 +12,9 @@ import org.jetbrains.annotations.NotNull;
 /**
  * @author Dark2932
  */
-public class HydrotoxinEffect extends MobEffect {
+public class HydratoxinEffect extends MobEffect {
 
-    public HydrotoxinEffect() {
+    public HydratoxinEffect() {
         super(MobEffectCategory.HARMFUL, 0x5E2791);
     }
 

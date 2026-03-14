@@ -121,4 +121,24 @@ public class MixinCommonConfig {
         return "Banned<" + path + ">";
     }
 
+    //CAN_DRINK_BY_HAND
+    @Redirect(method = "<clinit>", at = @At(value = "INVOKE", target = "Lnet/minecraftforge/common/ForgeConfigSpec$Builder;comment(Ljava/lang/String;)Lnet/minecraftforge/common/ForgeConfigSpec$Builder;", ordinal = 6))
+    private static ForgeConfigSpec.Builder mixin$CAN_DRINK_BY_HAND$comment(ForgeConfigSpec.Builder builder, String comment) {
+        return builder
+                .comment("Whether players can drink by shift-right-clicking water with an empty hand. Attention: it needs to be enable on both server and client sides")
+                .comment("You can tweak the value drunk in 'thirst_was_tweaked.toml'");
+    }
+
+    //HAND_DRINKING_HYDRATION
+    @Redirect(method = "<clinit>", at = @At(value = "INVOKE", target = "Lnet/minecraftforge/common/ForgeConfigSpec$Builder;define(Ljava/lang/String;Ljava/lang/Object;)Lnet/minecraftforge/common/ForgeConfigSpec$ConfigValue;", ordinal = 2))
+    private static <T> ForgeConfigSpec.ConfigValue<?> mixin$HAND_DRINKING_HYDRATION$define(ForgeConfigSpec.Builder builder, String path, T defaultValue) {
+        return builder.defineInRange("handDrinkingHydration", 2, 0, 20);
+    }
+
+    //HAND_DRINKING_QUENCHED
+    @Redirect(method = "<clinit>", at = @At(value = "INVOKE", target = "Lnet/minecraftforge/common/ForgeConfigSpec$Builder;define(Ljava/lang/String;Ljava/lang/Object;)Lnet/minecraftforge/common/ForgeConfigSpec$ConfigValue;", ordinal = 3))
+    private static <T> ForgeConfigSpec.ConfigValue<?> mixin$HAND_DRINKING_$define(ForgeConfigSpec.Builder builder, String path, T defaultValue) {
+        return builder.defineInRange("handDrinkingQuenched", 0, 0, 20);
+    }
+
 }

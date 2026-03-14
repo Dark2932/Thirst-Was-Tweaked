@@ -6,7 +6,6 @@ import com.dark2932.thirst_was_tweaked.content.item.DrinkItemManager;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.alchemy.Potion;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -31,7 +30,7 @@ public class ThirstTweakItems {
             new Item.Properties()
                     .food(new FoodProperties.Builder()
                             .nutrition(2)
-                            .saturationMod(0.1f)
+                            .saturationMod(1.0f)
                             .alwaysEat()
                             .build()
                     ),

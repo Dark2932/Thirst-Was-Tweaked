@@ -1,14 +1,10 @@
 package com.dark2932.thirst_was_tweaked.mixin.thirst;
 
-import com.dark2932.thirst_was_tweaked.content.item.DrinkItem;
-import com.dark2932.thirst_was_tweaked.content.item.DrinkItemManager;
 import com.dark2932.thirst_was_tweaked.content.registry.ThirstTweakEffects;
-import dev.ghen.thirst.api.ThirstHelper;
 import dev.ghen.thirst.content.thirst.PlayerThirst;
 import dev.ghen.thirst.foundation.common.capability.ModCapabilities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -45,8 +41,8 @@ public abstract class MixinPlayerThirst {
     @Inject(method = "tick", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/player/Player;isPassenger()Z", shift = At.Shift.AFTER))
     private void mixin$tick4(Player player, CallbackInfo ci) {
         player.getCapability(ModCapabilities.PLAYER_THIRST).ifPresent(cap -> {
-            if (player.hasEffect(ThirstTweakEffects.HYDROTOXIN.get())) {
-                int amplifier = player.getEffect(ThirstTweakEffects.HYDROTOXIN.get()).getAmplifier();
+            if (player.hasEffect(ThirstTweakEffects.HYDRATOXIN.get())) {
+                int amplifier = player.getEffect(ThirstTweakEffects.HYDRATOXIN.get()).getAmplifier();
                 cap.addExhaustion(player, 0.03f + (amplifier * 0.005f));
             }
         });

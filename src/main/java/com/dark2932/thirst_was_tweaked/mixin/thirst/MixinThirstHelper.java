@@ -3,17 +3,13 @@ package com.dark2932.thirst_was_tweaked.mixin.thirst;
 import com.dark2932.thirst_was_tweaked.content.item.DrinkItem;
 import dev.ghen.thirst.api.ThirstHelper;
 import dev.ghen.thirst.foundation.config.ItemSettingsConfig;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Redirect;
 
-import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -35,8 +31,8 @@ public class MixinThirstHelper {
         Item item = stack.getItem();
         String id = Objects.requireNonNull(ForgeRegistries.ITEMS.getKey(item)).toString();
         return (
-            !(ItemSettingsConfig.ITEMS_BLACKLIST.get()).contains(id) &&
-            (VALID_DRINKS.containsKey(item) || (item instanceof DrinkItem drinkItem && drinkItem.hasManager() && !drinkItem.isEdible()))
+            !(ItemSettingsConfig.ITEMS_BLACKLIST.get()).contains(id) && !item.isEdible() &&
+            (VALID_DRINKS.containsKey(item) || (item instanceof DrinkItem drinkItem && drinkItem.hasManager()))
         );
     }
 
@@ -49,8 +45,8 @@ public class MixinThirstHelper {
         Item item = stack.getItem();
         String id = Objects.requireNonNull(ForgeRegistries.ITEMS.getKey(item)).toString();
         return (
-            !(ItemSettingsConfig.ITEMS_BLACKLIST.get()).contains(id) &&
-            (VALID_FOODS.containsKey(item) || (item instanceof DrinkItem drinkItem && drinkItem.hasManager() && drinkItem.isEdible()))
+            !(ItemSettingsConfig.ITEMS_BLACKLIST.get()).contains(id) && item.isEdible() &&
+            (VALID_FOODS.containsKey(item) || (item instanceof DrinkItem drinkItem && drinkItem.hasManager()))
         );
     }
 
