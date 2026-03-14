@@ -26,12 +26,12 @@ public class ThirstTweakConfig {
     static {
         BUILDER.push("Functional Tweaks");
         RETAIN_THIRST_VALUE = BUILDER
-                .comment("Whether the thirst values will retain on death. (Default: true)")
-                .define("retainThirstValue", true);
+                .comment("Whether the thirst values will retain on death. (Default: false)")
+                .define("retainThirstValue", false);
 
         RETAIN_FOOD_VALUE = BUILDER
-                .comment("Whether the food values will retain on death. (Default: true)")
-                .define("retainFoodValue", true);
+                .comment("Whether the food values will retain on death. (Default: false)")
+                .define("retainFoodValue", false);
 
         DRINK_RAIN_HYDRATION = BUILDER
                 .comment("The thirst value will drink from rain. (Default: 1)")
