@@ -7,6 +7,7 @@
   "mixins": [
     "thirst.MixinCommonConfig",
     "thirst.MixinPlayerThirst",
+    "thirst.MixinThirstBarRenderer",
     "thirst.MixinThirstHelper",
     "thirst.MixinWaterPurity",
     "vanilla.MixinLivingEntity"
