@@ -38,7 +38,7 @@ public abstract class MixinPlayerThirst {
     @Redirect(method = "tick", at = @At(value = "INVOKE", target = "Ldev/ghen/thirst/content/thirst/PlayerThirst;addExhaustion(Lnet/minecraft/world/entity/player/Player;F)V"))
     private void mixin$tick3(PlayerThirst instance, Player player, float amount) {}
 
-    @Inject(method = "tick", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/player/Player;isPassenger()Z", shift = At.Shift.AFTER))
+    @Inject(method = "tick", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/player/Player;isPassenger()Z", shift = At.Shift.AFTER), remap = true)
     private void mixin$tick4(Player player, CallbackInfo ci) {
         player.getCapability(ModCapabilities.PLAYER_THIRST).ifPresent(cap -> {
             if (player.hasEffect(ThirstTweakEffects.HYDRATOXIN.get())) {

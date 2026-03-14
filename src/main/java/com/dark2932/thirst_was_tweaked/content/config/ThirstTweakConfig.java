@@ -37,13 +37,13 @@ public class ThirstTweakConfig {
                 .comment("The thirst value will drink from rain. (Default: 1)")
                 .defineInRange("drinkRainHydration", 1, 0, 20);
 
-        DRINK_RAIN_PURITY = BUILDER
-                .comment("The purity level of rain. (Default: 0)")
-                .defineInRange("drinkRainHydration", 0, 0, 3);
-
         DRINK_RAIN_QUENCHED = BUILDER
                 .comment("The saturation value will drink from rain. (Default: 0)")
                 .defineInRange("drinkRainQuenched", 0, 0, 20);
+
+        DRINK_RAIN_PURITY = BUILDER
+                .comment("The purity level of rain. (Default: 0)")
+                .defineInRange("drinkRainPurity", 0, 0, 3);
         BUILDER.pop();
 
         BUILDER.push("Hydratoxin Effect");
