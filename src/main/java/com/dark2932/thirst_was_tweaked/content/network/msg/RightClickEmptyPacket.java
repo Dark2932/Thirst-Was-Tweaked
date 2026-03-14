@@ -47,7 +47,7 @@ public class RightClickEmptyPacket {
                         player.isCrouching() && player.getXRot() <= -75.0f) {
                         player.getCapability(ModCapabilities.PLAYER_THIRST).ifPresent(cap -> {
                             if (cap.getThirst() < 20) {
-                                if (WaterPurity.givePurityEffects(player, level.getRandom().nextInt(2))) {
+                                if (WaterPurity.givePurityEffects(player, ThirstTweakConfig.DRINK_RAIN_PURITY.get())) {
                                     cap.drink(player, ThirstTweakConfig.DRINK_RAIN_HYDRATION.get(), ThirstTweakConfig.DRINK_RAIN_QUENCHED.get());
                                 }
                                 player.swing(InteractionHand.MAIN_HAND);

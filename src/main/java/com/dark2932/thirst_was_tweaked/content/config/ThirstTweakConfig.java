@@ -13,6 +13,7 @@ public class ThirstTweakConfig {
 
     public static final ForgeConfigSpec.ConfigValue<Boolean> RETAIN_THIRST_VALUE;
     public static final ForgeConfigSpec.ConfigValue<Boolean> RETAIN_FOOD_VALUE;
+    public static final ForgeConfigSpec.ConfigValue<Integer> DRINK_RAIN_PURITY;
     public static final ForgeConfigSpec.ConfigValue<Integer> DRINK_RAIN_HYDRATION;
     public static final ForgeConfigSpec.ConfigValue<Integer> DRINK_RAIN_QUENCHED;
 
@@ -35,6 +36,10 @@ public class ThirstTweakConfig {
         DRINK_RAIN_HYDRATION = BUILDER
                 .comment("The thirst value will drink from rain. (Default: 1)")
                 .defineInRange("drinkRainHydration", 1, 0, 20);
+
+        DRINK_RAIN_PURITY = BUILDER
+                .comment("The purity level of rain. (Default: 0)")
+                .defineInRange("drinkRainHydration", 0, 0, 3);
 
         DRINK_RAIN_QUENCHED = BUILDER
                 .comment("The saturation value will drink from rain. (Default: 0)")
