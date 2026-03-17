@@ -1,8 +1,10 @@
 # Thirst Was Tweaked
 
-### [English](#english-1)
+- ### [English](#english)
 
-### [简体中文](#简体中文-1)
+
+- ### [简体中文](#简体中文)
+
 
 ## English
 
