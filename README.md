@@ -1,9 +1,7 @@
 # Thirst Was Tweaked
 
-## Select Language - 选择语言
-
-- [English](#english)
-- [简体中文](#简体中文)
+- ### [English](#english)
+- ### [简体中文](#简体中文)
 
 ## English
 
