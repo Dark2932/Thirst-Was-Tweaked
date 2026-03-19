@@ -8,6 +8,7 @@
 - [Status Adjustment](#status-adjustment)
 - [Item Setting Checks](#item-setting-checks)
 - [Value Getters](#value-getters)
+- [Appendix](#appendix)
 
 ## Drinking Operations
 
@@ -117,12 +118,9 @@ Retrieves the purity level of the item stack. If undefined, it returns the defau
 public static int getPurity(ItemStack stack)
 ```
 
-## Appendix: Purity Level Reference
+## Appendix
 
-- **0**: Dirty - Default `30%` chance to trigger Hydratoxin.
-- **1**: Slightly Dirty - Default `18%` chance to trigger Hydratoxin.
-- **2**: Acceptable - Default `5%` chance to trigger Hydratoxin.
-- **3**: Purified - Safe, no negative effects.
+[ThirstAPI.java](https://github.com/Dark2932/Thirst-Was-Tweaked/blob/main/src/main/java/com/dark2932/thirst_was_tweaked/ThirstAPI.java)
 
 ---
 
@@ -136,6 +134,7 @@ public static int getPurity(ItemStack stack)
 - [状态调整](#状态调整)
 - [物品属性检查](#物品属性检查)
 - [数值获取](#数值获取)
+- [附录](#附录)
 
 ## 饮用操作
 
@@ -245,9 +244,6 @@ public static int getQuenched(ItemStack stack)
 public static int getPurity(ItemStack stack)
 ```
 
-## 附录：纯净度等级参考
+## 附录
 
-- **0**: 脏的 (Dirty) - 默认`30%`概率触发水毒。
-- **1**: 有点脏的 (Slightly Dirty) - 默认`18%`概率触发水毒。
-- **2**: 可接受的 (Acceptable) - 默认`5%`概率触发水毒。
-- **3**: 纯净的 (Purified) - 安全，无负面效果。
+[ThirstAPI.java](https://github.com/Dark2932/Thirst-Was-Tweaked/blob/main/src/main/java/com/dark2932/thirst_was_tweaked/ThirstAPI.java)

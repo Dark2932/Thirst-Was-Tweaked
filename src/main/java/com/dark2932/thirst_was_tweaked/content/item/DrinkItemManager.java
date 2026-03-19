@@ -2,6 +2,7 @@ package com.dark2932.thirst_was_tweaked.content.item;
 
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.Item;
 
 import java.util.ArrayList;
