@@ -7,13 +7,13 @@
   "mixins": [
     "thirst.MixinCommonConfig",
     "thirst.MixinPlayerThirst",
-    "thirst.MixinThirstBarRenderer",
     "thirst.MixinThirstHelper",
     "thirst.MixinWaterPurity",
     "vanilla.MixinLivingEntity"
   ],
   "client": [
     "thirst.MixinHUDOverlayHandler",
+    "thirst.MixinThirstBarRenderer",
     "thirst.accessor.HUDOverlayHandlerAccessor"
   ],
   "injectors": {
