@@ -22,17 +22,6 @@ public class MixinCommonConfig {
         return builder.define(str(path), false);
     }
 
-    // WATER_BOTTLE_STACKSIZE
-    @Redirect(method = "<clinit>", at = @At(value = "INVOKE", target = "Lnet/minecraftforge/common/ForgeConfigSpec$Builder;comment(Ljava/lang/String;)Lnet/minecraftforge/common/ForgeConfigSpec$Builder;", ordinal = 8))
-    private static ForgeConfigSpec.Builder mixin$WATER_BOTTLE_STACKSIZE$comment(ForgeConfigSpec.Builder builder, String comment) {
-        return comment(builder);
-    }
-    //todo 调整最大堆叠数获取的mixin代码
-    @Redirect(method = "<clinit>", at = @At(value = "INVOKE", target = "Lnet/minecraftforge/common/ForgeConfigSpec$Builder;define(Ljava/lang/String;Ljava/lang/Object;)Lnet/minecraftforge/common/ForgeConfigSpec$ConfigValue;", ordinal = 1))
-    private static <T> ForgeConfigSpec.ConfigValue<?> mixin$WATER_BOTTLE_STACKSIZE$define(ForgeConfigSpec.Builder builder, String path, T defaultValue) {
-        return builder.define(str(path), 1);
-    }
-
     // DIRTY_POISON_PERCENTAGE
     @Redirect(method = "<clinit>", at = @At(value = "INVOKE", target = "Lnet/minecraftforge/common/ForgeConfigSpec$Builder;comment(Ljava/lang/String;)Lnet/minecraftforge/common/ForgeConfigSpec$Builder;", ordinal = 21))
     private static ForgeConfigSpec.Builder mixin$DIRTY_POISON_PERCENTAGE$comment(ForgeConfigSpec.Builder builder, String comment) {

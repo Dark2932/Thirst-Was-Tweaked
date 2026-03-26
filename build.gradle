@@ -151,10 +151,10 @@ dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 
-    compileOnly(annotationProcessor("com.github.bawnorton.mixinsquared:mixinsquared-common:0.3.7-beta.1"))
-    implementation(jarJar("com.github.bawnorton.mixinsquared:mixinsquared-forge:0.3.7-beta.1")) {
-        jarJar.ranged(it, "[0.3.7-beta.1,)")
-    }
+//    compileOnly(annotationProcessor("com.github.bawnorton.mixinsquared:mixinsquared-common:0.3.7-beta.1"))
+//    implementation(jarJar("com.github.bawnorton.mixinsquared:mixinsquared-forge:0.3.7-beta.1")) {
+//        jarJar.ranged(it, "[0.3.7-beta.1,)")
+//    }
 
     //implementation fg.deobf("squeek.appleskin:appleskin-forge:mc1.20.1-2.5.1")
     implementation fg.deobf("curse.maven:thirst-was-taken-679270:6660408")
