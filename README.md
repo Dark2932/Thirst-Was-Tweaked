@@ -46,7 +46,7 @@ You can use `DrinkItemManager` to set the item's hydration amount, use duration,
 
 - Modified classes like `ThirstHelper` and `WaterPurity` via Mixin to make their code logic more aligned with practical development needs and expected results. Common methods can be called through the `ThirstAPI` class.
 
-- Fixed some meaningless code that could lead to bugs, such as the modification of the `getMaxStackSize` method in `MixinItemStack` (which was essentially "Burying one's head in the sand" — changing the getter because the stack size couldn't be changed :P).
+- Fixed some meaningless code that could lead to bugs.
 
 ### Future Plans
 
@@ -101,7 +101,7 @@ You can use `DrinkItemManager` to set the item's hydration amount, use duration,
 
 - 通过Mixin修改了`ThirstHelper`、`WaterPurity`等类，使其代码逻辑更符合实际开发过程中的需求与预期结果，且可以通过`ThirstAPI`类来调用它们其中的一些常用方法。
 
-- 修复了一些无任何实际意义、可能导致Bug的代码，例如`MixinItemStack`对`getMaxStackSize`方法的修改（这应该算是掩耳盗铃，改不了物品的堆叠数就改掉它的getter :P）。
+- 修复了一些无任何实际意义、可能导致Bug的代码。
 
 ### 未来计划
 
